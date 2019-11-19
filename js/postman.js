@@ -23,13 +23,17 @@ export class Postman {
   }
 
   static async get_patient(phone_number) {
-    // TODO
+    const body = {
+      phone: phone_number
+    };
+
+    return await Postman._post(body, '/get/data');
   }
 
   static async _post(body, path) {
     const response = await fetch(server + path, {
       method: 'POST',
-      credentials: 'same-origin',
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json'
       },

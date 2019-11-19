@@ -12,20 +12,47 @@
     <link rel="stylesheet" href="../less/info.less" />
   </head>
   <body>
-    <nav class="navbar navbar-default navbar-inverse">
-      <div class="container">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">
-            <img alt="Brand" src="../img/fulllogo.png" height="50" />
-          </a>
+    <div class="modal fade" id="edit_personal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title">Edit Personal Data</h4>
+          </div>
+          <div class="modal-body">
+            <p>
+              <label for="new_name">Name: </label>
+              <input type="text" name="new_name" id="new_name" />
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+              Close
+            </button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
         </div>
+      </div>
+    </div>
+    <nav class="navbar navbar-default navbar-inverse">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">
+          <img alt="Brand" src="../img/fulllogo.png" height="50" />
+        </a>
       </div>
     </nav>
     <div class="container">
       <div class="row">
         <div class="col-md-4 text-center">
           <img src="../img/user.png" alt="User Icon" class="img-circle" />
-          <h1>Alex Beck</h1>
+          <h1 id="name">Alex Beck</h1>
           <h5 class="text-muted">Patient</h5>
           <br />
           <a class="btn btn-primary btn-lg">Add Quick Log</a>
@@ -62,7 +89,22 @@
           <!-- Tab panes -->
           <div class="tab-content">
             <div class="tab-pane fade active in" id="personal">
-              Personal Data
+              <div id="personal-container"></div>
+              <script id="personal-template" type="text/x-handlebars-template">
+                <p><b>Name:</b> {{name}}</p>
+                <p><b>Email:</b> {{email}}</p>
+                <p><b>Gender:</b> {{gender}}</p>
+                <p><b>Age:</b> {{age}}</p>
+                <p><b>Address:</b> {{address}}</p>
+              </script>
+              <button
+                type="button"
+                class="btn btn-warning"
+                data-toggle="modal"
+                data-target="#edit_personal"
+              >
+                <span class="glyphicon glyphicon-pencil"></span> Edit
+              </button>
             </div>
             <div class="tab-pane fade" id="biometric">
               Biometric Data
@@ -83,5 +125,6 @@
     <script src="../js/jpatch.js"></script>
     <script src="../node_modules/popper.js/dist/umd/popper.js"></script>
     <script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="../js/info.js"></script>
   </body>
 </html>
