@@ -1,4 +1,4 @@
-const server = "http://localhost:8000";
+const server = "http://localhost:5000";
 
 export class Postman {
   static async login(phone, password, role) {
@@ -8,7 +8,7 @@ export class Postman {
       role: role
     };
 
-    return await Postman._post(body, '/register');
+    return await Postman._post(body, '/login');
   }
 
   static async register(username, phone, password, role) {
@@ -22,6 +22,10 @@ export class Postman {
     return await Postman._post(body, '/register');
   }
 
+  static async get_patient(phone_number) {
+    // TODO
+  }
+
   static async _post(body, path) {
     const response = await fetch(server + path, {
       method: 'POST',
@@ -29,7 +33,7 @@ export class Postman {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: body
+      body: JSON.stringify(body)
     });
 
     return await response.json();

@@ -7,7 +7,7 @@ document.getElementById("form").onsubmit = (e) => {
   const password = document.getElementById("inputPassword").value;
   const role = document.getElementById("inputRole").value;
   Postman.register(username, phone, password, role).then((res) => {
-    console.log(res);
+    window.location.replace('/login.html');
   }).catch(() => {
     $("#mymodal").modal('show');
   });
