@@ -30,6 +30,40 @@ export class Postman {
     return await Postman._post(body, '/get/data');
   }
 
+  static async add_patient_data(name, email, gender, age, address) {
+    const body = {
+      name: name,
+      email: email,
+      gender: gender,
+      age: age,
+      address: address
+    };
+
+    return await Postman._post(body, "/add/data");
+  }
+
+  static async add_quick_log(title, content) {
+    const body = {
+      title: title,
+      content: content,
+      t: "simple"
+    };
+
+    return await Postman._post(body, "/add/log");
+  }
+
+  static async add_detailed_log(title, date, content, data) {
+    const body = {
+      title: title,
+      date: date,
+      content: content,
+      data: data,
+      t: "detailed"
+    };
+
+    return await Postman._post(body, "/add/log");
+  }
+
   static async _post(body, path) {
     const response = await fetch(server + path, {
       method: 'POST',
