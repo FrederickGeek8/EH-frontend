@@ -49,33 +49,39 @@
             <button type="button" class="btn btn-default" data-dismiss="modal">
               Close
             </button>
-            <button type="button" class="btn btn-primary" id="retrieve_data">Retrieve</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" id="retrieve_data">
+              Retrieve
+            </button>
           </div>
         </div>
       </div>
     </div>
     <nav class="navbar navbar-default navbar-inverse">
-      <div class="container">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">
-            <img alt="Brand" src="../img/fulllogo.png" height="50" />
-          </a>
-        </div>
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">
+          <img alt="Brand" src="../img/fulllogo.png" height="50" />
+        </a>
+      </div>
+      <div class="navbar-header pull-right">
+        <a href="#" class="navbar-text" id="logoutButton">Logout</a>
       </div>
     </nav>
     <div class="container">
       <div class="row">
         <div class="col-md-4 text-center">
           <img src="../img/doctor.png" alt="Doctor Icon" class="img-circle" />
-          <h1>Conan Desmond</h1>
+          <h1 id="name">Conan Desmond</h1>
           <h5 class="text-muted">Doctor</h5>
-          <h5>Old York Hospital</h5>
-          <h5>Cardiology</h5>
-          <h5>Senior Doctor</h5>
-          <h5>Age 35</h5>
+          <div id="personal-container"></div>
+          <script id="personal-template" type="text/x-handlebars-template">
+            <p><b>Email:</b> {{email}}</p>
+            <p><b>Gender:</b> {{gender}}</p>
+            <p><b>Address:</b> {{address}}</p>
+            <p><b>Age:</b> {{age}}</p>
+          </script>
           <br />
           <h2>Currently Viewing</h2>
-          <h5>Nobody</h5>
+          <h5 id="patient-name">Nobody</h5>
           <br />
           <a
             class="btn btn-primary btn-lg"
@@ -95,7 +101,7 @@
             </li>
             <li>
               <a href="#biometric" role="tab" data-toggle="tab">
-                Biometric Data
+                Logs
               </a>
             </li>
             <li>
@@ -113,10 +119,27 @@
           <!-- Tab panes -->
           <div class="tab-content">
             <div class="tab-pane fade active in" id="personal">
-              Personal Data
+              <div id="patient-container">No patient selected.</div>
+              <script id="patient-template" type="text/x-handlebars-template">
+                <p><b>Name:</b> {{name}}</p>
+                <p><b>Email:</b> {{email}}</p>
+                <p><b>Gender:</b> {{gender}}</p>
+                <p><b>Address:</b> {{address}}</p>
+                <p><b>Age:</b> {{age}}</p>
+              </script>
             </div>
             <div class="tab-pane fade" id="biometric">
-              Biometric Data
+              <div id="patient-container">No patient selected.</div>
+              <script id="patient-template" type="text/x-handlebars-template">
+                {{#each logs}}
+                
+                {{/each}}
+                <p><b>Name:</b> {{name}}</p>
+                <p><b>Email:</b> {{email}}</p>
+                <p><b>Gender:</b> {{gender}}</p>
+                <p><b>Address:</b> {{address}}</p>
+                <p><b>Age:</b> {{age}}</p>
+              </script>
             </div>
             <div class="tab-pane fade" id="illness">
               Illnesses

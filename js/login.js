@@ -11,7 +11,11 @@ document.getElementById("form").onsubmit = e => {
     .then(res => ErrorHandler.handle(res))
     .then(() => {
       Cookies.set('phone', phone);
-      window.location.replace("/info.html");
+      if (role == 'doctor') {
+        window.location.replace("/info_doctor.html");
+      } else {
+        window.location.replace("/info.html");
+      }
     })
     .catch((err) => {
       $("#error-body").text(err);

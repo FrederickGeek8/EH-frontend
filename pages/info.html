@@ -77,7 +77,9 @@
             <button type="button" class="btn btn-default" data-dismiss="modal">
               Close
             </button>
-            <button type="button" class="btn btn-primary" id="save_data">Save changes</button>
+            <button type="button" class="btn btn-primary" id="save_data">
+              Save changes
+            </button>
           </div>
         </div>
       </div>
@@ -114,20 +116,22 @@
                 class="form-control"
                 name="simple_content"
                 id="simple_content"
-                rows="5">
-              </textarea>
+                rows="5"
+              ></textarea>
             </p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">
               Close
             </button>
-            <button type="button" class="btn btn-primary" id="save_log">Save changes</button>
+            <button type="button" class="btn btn-primary" id="save_log">
+              Save changes
+            </button>
           </div>
         </div>
       </div>
     </div>
-    
+
     <div class="modal fade" id="add_detailed_log" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -168,90 +172,99 @@
                 class="form-control"
                 name="detailed_content"
                 id="detailed_content"
-                rows="5">
-              </textarea>
+                rows="5"
+              ></textarea>
             </p>
-            <p>
-              <label for="detailed_data">Data: </label>
-              <div class="form-inline">
-                <div class="form-group">
-                  <label for="detailed_data">Sympton: </label>
-                  <select class="form-control" id="detailed_sympton1">
-                    <option value="None">None</option>
-                    <option value="body_temperature">Body Temperature</option>
-                    <option value="heart_rate">Heart Rate</option>
-                    <option value="blood_pressure">Blood Pressure</option>
-                    <option value="height">Height</option>
-                    <option value="weight">Weight</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label> &nbsp; </label>
-                </div>
-                <div class="form-group">
-                  <label for="detailed_data">Details: </label>
-                  <input type="text"
+            <label for="detailed_data">Data: </label>
+            <div class="form-inline">
+              <div class="form-group">
+                <label for="detailed_data">Symptom: </label>
+                <select class="form-control" id="detailed_symptom1">
+                  <option value="None">None</option>
+                  <option value="body_temperature">Body Temperature</option>
+                  <option value="heart_rate">Heart Rate</option>
+                  <option value="blood_pressure">Blood Pressure</option>
+                  <option value="height">Height</option>
+                  <option value="weight">Weight</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label> &nbsp; </label>
+              </div>
+              <div class="form-group">
+                <label for="detailed_data">Details: </label>
+                <input
+                  type="text"
                   class="form-control"
                   name="detailed_data1"
-                  id="detailed_data1">
-                </div>
+                  id="detailed_data1"
+                />
               </div>
-              <br>
-              <div class="form-inline">
-                <div class="form-group">
-                  <label for="detailed_data">Sympton: </label>
-                  <select class="form-control" id="detailed_sympton2">
-                    <option value="None">None</option>
-                    <option value="body_temperature">Body Temperature</option>
-                    <option value="heart_rate">Heart Rate</option>
-                    <option value="blood_pressure">Blood Pressure</option>
-                    <option value="height">Height</option>
-                    <option value="weight">Weight</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label> &nbsp; </label>
-                </div>
-                <div class="form-group">
-                  <label for="detailed_data">Details: </label>
-                  <input type="text"
+            </div>
+            <br />
+            <div class="form-inline">
+              <div class="form-group">
+                <label for="detailed_data">Symptom: </label>
+                <select class="form-control" id="detailed_symptom2">
+                  <option value="None">None</option>
+                  <option value="body_temperature">Body Temperature</option>
+                  <option value="heart_rate">Heart Rate</option>
+                  <option value="blood_pressure">Blood Pressure</option>
+                  <option value="height">Height</option>
+                  <option value="weight">Weight</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label> &nbsp; </label>
+              </div>
+              <div class="form-group">
+                <label for="detailed_data">Details: </label>
+                <input
+                  type="text"
                   class="form-control"
                   name="detailed_data2"
-                  id="detailed_data2">
-                </div>
+                  id="detailed_data2"
+                />
               </div>
-              <br>
-              <div class="form-inline">
-                <div class="form-group">
-                  <label for="detailed_data">Sympton: </label>
-                  <select class="form-control" id="detailed_sympton3">
-                    <option value="None">None</option>
-                    <option value="body_temperature">Body Temperature</option>
-                    <option value="heart_rate">Heart Rate</option>
-                    <option value="blood_pressure">Blood Pressure</option>
-                    <option value="height">Height</option>
-                    <option value="weight">Weight</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label> &nbsp; </label>
-                </div>
-                <div class="form-group">
-                  <label for="detailed_data">Details: </label>
-                  <input type="text"
+            </div>
+            <br />
+            <div class="form-inline">
+              <div class="form-group">
+                <label for="detailed_data">Symptom: </label>
+                <select class="form-control" id="detailed_symptom3">
+                  <option value="None">None</option>
+                  <option value="body_temperature">Body Temperature</option>
+                  <option value="heart_rate">Heart Rate</option>
+                  <option value="blood_pressure">Blood Pressure</option>
+                  <option value="height">Height</option>
+                  <option value="weight">Weight</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label> &nbsp; </label>
+              </div>
+              <div class="form-group">
+                <label for="detailed_data">Details: </label>
+                <input
+                  type="text"
                   class="form-control"
                   name="detailed_data3"
-                  id="detailed_data3">
-                </div>
+                  id="detailed_data3"
+                />
               </div>
-              
-            </p>
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">
               Close
             </button>
-            <button type="button" class="btn btn-primary" id="save_detailed_log">Save changes</button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              id="save_detailed_log"
+            >
+              Save changes
+            </button>
           </div>
         </div>
       </div>
@@ -263,7 +276,11 @@
           <img alt="Brand" src="../img/fulllogo.png" height="50" />
         </a>
       </div>
+      <div class="navbar-header pull-right">
+        <a href="#" class="navbar-text" id="logoutButton">Logout</a>
+      </div>
     </nav>
+
     <div class="container">
       <div class="row">
         <div class="col-md-4 text-center">
@@ -271,10 +288,20 @@
           <h1 id="name">Alex Beck</h1>
           <h5 class="text-muted">Patient</h5>
           <br />
-          <a class="btn btn-primary btn-lg" data-toggle="modal" data-target="#add_log">Add Quick Log</a>
+          <a
+            class="btn btn-primary btn-lg"
+            data-toggle="modal"
+            data-target="#add_log"
+            >Add Quick Log</a
+          >
           <br />
           <br />
-          <a class="btn btn-primary btn-lg" data-toggle="modal" data-target="#add_detailed_log">Add Detailed Log</a>
+          <a
+            class="btn btn-primary btn-lg"
+            data-toggle="modal"
+            data-target="#add_detailed_log"
+            >Add Detailed Log</a
+          >
           <br />
           <br />
         </div>
@@ -287,7 +314,7 @@
             </li>
             <li>
               <a href="#biometric" role="tab" data-toggle="tab">
-                Biometric Data
+                Logs
               </a>
             </li>
             <li>
@@ -323,7 +350,15 @@
               </button>
             </div>
             <div class="tab-pane fade" id="biometric">
-              Biometric Data
+              <div id="personal-logs">No patient selected.</div>
+              <script id="logs-template" type="text/x-handlebars-template">
+                {{#each data}}
+                <div class="log">
+                  <h4>{{this.title}} - {{this.date}}</h4>
+                  <p>{{this.content}}</p>
+                </div>
+                {{/each}}
+              </script>
             </div>
             <div class="tab-pane fade" id="illness">
               Illnesses
@@ -341,6 +376,6 @@
     <script src="../js/jpatch.js"></script>
     <script src="../node_modules/popper.js/dist/umd/popper.js"></script>
     <script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="../js/info.js"></script>
+    <script src="../js/patient.js"></script>
   </body>
 </html>
