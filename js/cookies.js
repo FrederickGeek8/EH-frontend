@@ -10,6 +10,13 @@ export class Cookies {
     return obj[key];
   }
 
+  static clear() {
+    const decode = Cookies._decode();
+    for (let key in decode) {
+      document.cookie = `${key}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+    }
+  }
+
   static _decode() {
     var obj = {};
     if (document.cookie != "") {
