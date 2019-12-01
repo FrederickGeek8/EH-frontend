@@ -22,7 +22,7 @@ export class Postman {
     return await Postman._post(body, '/register');
   }
 
-  static async get_patient(phone_number) {
+  static async get_personal_data(phone_number) {
     const body = {
       phone: phone_number
     };
@@ -30,7 +30,7 @@ export class Postman {
     return await Postman._post(body, '/get/data');
   }
 
-  static async add_patient_data(name, email, gender, age, address) {
+  static async add_personal_data(name, email, gender, age, address) {
     const body = {
       name: name,
       email: email,
@@ -64,6 +64,28 @@ export class Postman {
     return await Postman._post(body, "/add/log");
   }
 
+  static async get_logs(phone_number) {
+    const body = {
+      phone: phone_number
+    };
+
+    return await Postman._post(body, "/get/log");
+  }
+
+  static async get_medicine(phone_number) {
+    const body = {
+      patient_phone: phone_number
+    };
+
+    return await Postman._post(body, "/get/medicine");
+  }
+
+  static async logout() {
+    const body = {};
+
+    return await Postman._get(body, '/logout');
+  }
+
   static async _post(body, path) {
     const response = await fetch(server + path, {
       method: 'POST',
@@ -72,6 +94,22 @@ export class Postman {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(body)
+    });
+
+    return await response.json();
+  }
+
+  static async _get(params, path) {
+    let query = Object.keys(params)
+      .map(k => `${encodeURIComponent(k)}=${encodeURIComponent(params[k])}`)
+      .join('&');
+
+    if (query != '') {
+      query = '?' + query;
+    }
+
+    const response = await fetch(server + path + query, {
+      credentials: 'include'
     });
 
     return await response.json();
