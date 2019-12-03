@@ -1,14 +1,25 @@
-import {Postman} from './postman.js';
+import { Postman } from "./postman";
+import { Cookies } from "./cookies";
 
-document.getElementById("form").onsubmit = (e) => {
+if (Cookies.get("phone") != undefined && Cookies.get("role") != undefined) {
+  if (Cookies.get("role") == "doctor") {
+    window.location.replace("/info_doctor.html");
+  } else {
+    window.location.replace("/info.html");
+  }
+}
+
+document.getElementById("form").onsubmit = e => {
   e.preventDefault();
   const username = document.getElementById("inputUser").value;
   const phone = document.getElementById("inputPhone").value;
   const password = document.getElementById("inputPassword").value;
   const role = document.getElementById("inputRole").value;
-  Postman.register(username, phone, password, role).then((res) => {
-    window.location.replace('/login.html');
-  }).catch(() => {
-    $("#mymodal").modal('show');
-  });
+  Postman.register(username, phone, password, role)
+    .then(res => {
+      window.location.replace("/login.html");
+    })
+    .catch(() => {
+      $("#mymodal").modal("show");
+    });
 };
