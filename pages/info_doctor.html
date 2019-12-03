@@ -12,6 +12,78 @@
     <link rel="stylesheet" href="../less/info.less" />
   </head>
   <body>
+    <div class="modal fade" id="edit_personal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title">Edit Personal Data</h4>
+          </div>
+          <div class="modal-body">
+            <p>
+              <label for="new_name">Name: </label>
+              <input
+                type="text"
+                class="form-control"
+                name="new_name"
+                id="new_name"
+              />
+            </p>
+            <p>
+              <label for="new_email">Email: </label>
+              <input
+                type="email"
+                class="form-control"
+                name="new_email"
+                id="new_email"
+              />
+            </p>
+            <p>
+              <label for="new_gender">Gender: </label>
+              <input
+                type="text"
+                class="form-control"
+                name="new_gender"
+                id="new_gender"
+              />
+            </p>
+            <p>
+              <label for="new_age">Age: </label>
+              <input
+                type="text"
+                class="form-control"
+                name="new_age"
+                id="new_age"
+              />
+            </p>
+            <p>
+              <label for="new_addr">Address: </label>
+              <input
+                type="text"
+                class="form-control"
+                name="new_addr"
+                id="new_addr"
+              />
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+              Close
+            </button>
+            <button type="button" class="btn btn-primary" id="save_data">
+              Save changes
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
     <div
       class="modal fade"
       id="myModal"
@@ -49,7 +121,12 @@
             <button type="button" class="btn btn-default" data-dismiss="modal">
               Close
             </button>
-            <button type="button" class="btn btn-primary" data-dismiss="modal" id="retrieve_data">
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-dismiss="modal"
+              id="retrieve_data"
+            >
               Retrieve
             </button>
           </div>
@@ -73,6 +150,14 @@
           <h1 id="name">Conan Desmond</h1>
           <h5 class="text-muted">Doctor</h5>
           <div id="personal-container"></div>
+          <button
+            type="button"
+            class="btn btn-warning"
+            data-toggle="modal"
+            data-target="#edit_personal"
+          >
+            <span class="glyphicon glyphicon-pencil"></span> Edit
+          </button>
           <script id="personal-template" type="text/x-handlebars-template">
             <p><b>Email:</b> {{email}}</p>
             <p><b>Gender:</b> {{gender}}</p>
@@ -129,23 +214,126 @@
               </script>
             </div>
             <div class="tab-pane fade" id="biometric">
-              <div id="patient-container">No patient selected.</div>
-              <script id="patient-template" type="text/x-handlebars-template">
-                {{#each logs}}
-                
+              <div id="patient-logs">No patient selected.</div>
+              <script id="logs-template" type="text/x-handlebars-template">
+                {{#each data}}
+                <div class="log">
+                  <h4>{{this.title}} - {{this.date}}</h4>
+                  <p>{{this.content}}</p>
+                  <p>Symptoms</p>
+                  <ul>
+                    {{#each this.data}}
+                      <li>{{@key}}: {{this}}</li>
+                    {{/each}}
+                  </ul>
+                </div>
                 {{/each}}
-                <p><b>Name:</b> {{name}}</p>
-                <p><b>Email:</b> {{email}}</p>
-                <p><b>Gender:</b> {{gender}}</p>
-                <p><b>Address:</b> {{address}}</p>
-                <p><b>Age:</b> {{age}}</p>
               </script>
             </div>
             <div class="tab-pane fade" id="illness">
               Illnesses
             </div>
             <div class="tab-pane fade" id="medication">
-              Medications
+              <div
+                class="panel-group"
+                id="accordion"
+                role="tablist"
+                aria-multiselectable="true"
+              >
+                <div class="panel panel-default">
+                  <div class="panel-heading" role="tab" id="headingOne">
+                    <h4 class="panel-title">
+                      <a
+                        role="button"
+                        data-toggle="collapse"
+                        data-parent="#accordion"
+                        href="#add_meds"
+                        aria-expanded="true"
+                        aria-controls="add_meds"
+                      >
+                        Add Medication
+                      </a>
+                    </h4>
+                  </div>
+
+                  <div
+                    id="add_meds"
+                    class="panel-collapse collapse"
+                    role="tabpanel"
+                    aria-labelledby="headingOne"
+                  >
+                    <div class="panel-body">
+                      <p>
+                        <label for="med-name">Medication Name</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="med-name"
+                          id="med-name"
+                        />
+                      </p>
+                      <p>
+                        <label for="med-desc">Description</label>
+                        <br />
+                        <textarea
+                          name="med-desc"
+                          id="med-desc"
+                          cols="30"
+                          rows="10"
+                          class="form-control"
+                        ></textarea>
+                      </p>
+                      <p>
+                        <label for="med-time-1">Time Taken #1</label>
+                        <input
+                          type="time"
+                          class="form-control"
+                          name="med-time-1"
+                          id="med-time-1"
+                        />
+                      </p>
+                      <p>
+                        <label for="med-time-2">Time Taken #2</label>
+                        <input
+                          type="time"
+                          class="form-control"
+                          name="med-time-2"
+                          id="med-time-2"
+                        />
+                      </p>
+                      <p>
+                        <label for="med-time-3">Time Taken #2</label>
+                        <input
+                          type="time"
+                          class="form-control"
+                          name="med-time-3"
+                          id="med-time-3"
+                        />
+                      </p>
+                      <p>
+                        <button class="form-control" id="add_med">
+                          Add Medicine
+                        </button>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="patient-meds">No patient selected.</div>
+              <script id="med-template" type="text/x-handlebars-template">
+                {{#each data}}
+                <div class="med">
+                  <h4>{{this.name}}</h4>
+                  <b>Times</b>
+                  <ul>
+                  {{#each this.times}}
+                    <li>{{this}}</li>
+                  {{/each}}
+                  </ul>
+                  <p>{{this.description}}</p>
+                </div>
+                {{/each}}
+              </script>
             </div>
           </div>
         </div>

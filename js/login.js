@@ -11,6 +11,7 @@ document.getElementById("form").onsubmit = e => {
     .then(res => ErrorHandler.handle(res))
     .then(() => {
       Cookies.set('phone', phone);
+      Cookies.set('role', role);
       if (role == 'doctor') {
         window.location.replace("/info_doctor.html");
       } else {

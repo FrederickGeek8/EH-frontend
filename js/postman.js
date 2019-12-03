@@ -72,6 +72,18 @@ export class Postman {
     return await Postman._post(body, "/get/log");
   }
 
+  static async add_medicine(phone, name, med_name, desc, times) {
+    const body = {
+      patient_phone: phone,
+      patient_name: name,
+      name: med_name,
+      description: desc,
+      times: times
+    };
+
+    return await Postman._post(body, "/add/medicine");
+  }
+
   static async get_medicine(phone_number) {
     const body = {
       patient_phone: phone_number

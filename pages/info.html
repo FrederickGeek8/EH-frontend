@@ -356,6 +356,12 @@
                 <div class="log">
                   <h4>{{this.title}} - {{this.date}}</h4>
                   <p>{{this.content}}</p>
+                  <p>Symptoms</p>
+                  <ul>
+                    {{#each this.data}}
+                      <li>{{@key}}: {{this}}</li>
+                    {{/each}}
+                  </ul>
                 </div>
                 {{/each}}
               </script>
@@ -364,7 +370,21 @@
               Illnesses
             </div>
             <div class="tab-pane fade" id="medication">
-              Medications
+              <div id="personal-meds">No patient selected.</div>
+              <script id="med-template" type="text/x-handlebars-template">
+                {{#each data}}
+                <div class="med">
+                  <h4>{{this.name}}</h4>
+                  <b>Times</b>
+                  <ul>
+                  {{#each this.times}}
+                    <li>{{this}}</li>
+                  {{/each}}
+                  </ul>
+                  <p>{{this.description}}</p>
+                </div>
+                {{/each}}
+              </script>
             </div>
           </div>
         </div>
