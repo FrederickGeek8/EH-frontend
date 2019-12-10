@@ -105,6 +105,8 @@
             <h4 class="modal-title" id="myModalLabel">Patient Data Request</h4>
           </div>
           <div class="modal-body">
+            <a href="/search.html">Search for a Patient's Phone Number -></a>
+            <br>
             <form class="form-inline" action="">
               <div class="form-group">
                 <label class="sr-only" for="inputPhone">Phone Number</label>
@@ -146,7 +148,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-4 text-center">
-          <img src="../img/doctor.png" alt="Doctor Icon" class="img-circle" />
+          <img src="../img/user.png" alt="Doctor Icon" class="img-circle" />
           <h1 id="name">Conan Desmond</h1>
           <h5 class="text-muted">Doctor</h5>
           <div id="personal-container"></div>
@@ -220,7 +222,7 @@
                 <div class="log">
                   <h4>{{this.title}} - {{this.date}}</h4>
                   <p>{{this.content}}</p>
-                  <p>Symptoms</p>
+                  <p>Symptoms:</p>
                   <ul>
                     {{#each this.data}}
                       <li>{{@key}}: {{this}}</li>
@@ -231,12 +233,167 @@
               </script>
             </div>
             <div class="tab-pane fade" id="illness">
-              Illnesses
+              <div
+                class="panel-group accordion"
+                id="ill-accordion"
+                role="tablist"
+                aria-multiselectable="true"
+              >
+                <div class="panel panel-default">
+                  <div class="panel-heading" role="tab" id="headingTwo">
+                    <h4 class="panel-title">
+                      <a
+                        role="button"
+                        data-toggle="collapse"
+                        data-parent="#ill-accordion"
+                        href="#add_ill"
+                        aria-expanded="true"
+                        aria-controls="add_ill"
+                      >
+                        Add Diagnosis
+                      </a>
+                    </h4>
+                  </div>
+
+                  <div
+                    id="add_ill"
+                    class="panel-collapse collapse"
+                    role="tabpanel"
+                    aria-labelledby="headingTwo"
+                  >
+                    <div class="panel-body">
+                      <p>
+                        <label for="ill-title">Title</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="ill-title"
+                          id="ill-title"
+                        />
+                      </p>
+                      <p>
+                        <label for="ill-date">Date: </label>
+                        <input
+                          type="date"
+                          class="form-control"
+                          name="ill-date"
+                          id="ill-date"
+                        />
+                      </p>
+                      <p>
+                        <label for="ill-desc">Description: </label>
+                        <br />
+                        <textarea
+                          name="ill-desc"
+                          id="ill-desc"
+                          cols="30"
+                          rows="10"
+                          class="form-control"
+                        ></textarea>
+                      </p>
+                      <br />
+                      <div class="form-inline">
+                        <div class="form-group">
+                          <label for="ill-dis1">Disease: </label>
+                          <input
+                            type="text"
+                            name="ill-dis1"
+                            class="form-control"
+                            id="ill-dis1"
+                          />
+                        </div>
+                        <div class="form-group">
+                          <label> &nbsp; </label>
+                        </div>
+                        <div class="form-group">
+                          <label for="ill-dis1_data">Details: </label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            name="ill-dis1_data"
+                            id="ill-dis1_data"
+                          />
+                        </div>
+                      </div>
+                      <br />
+                      <div class="form-inline">
+                        <div class="form-group">
+                          <label for="ill-dis2">Disease: </label>
+                          <input
+                            type="text"
+                            name="ill-dis2"
+                            class="form-control"
+                            id="ill-dis2"
+                          />
+                        </div>
+                        <div class="form-group">
+                          <label> &nbsp; </label>
+                        </div>
+                        <div class="form-group">
+                          <label for="ill-dis2_data">Details: </label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            name="ill-dis2_data"
+                            id="ill-dis2_data"
+                          />
+                        </div>
+                      </div>
+                      <br />
+                      <div class="form-inline">
+                        <div class="form-group">
+                          <label for="ill-dis3">Disease: </label>
+                          <input
+                            type="text"
+                            name="ill-dis3"
+                            class="form-control"
+                            id="ill-dis3"
+                          />
+                        </div>
+                        <div class="form-group">
+                          <label> &nbsp; </label>
+                        </div>
+                        <div class="form-group">
+                          <label for="ill-dis3_data">Details: </label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            name="ill-dis3_data"
+                            id="ill-dis3_data"
+                          />
+                        </div>
+                      </div>
+                      <br />
+                      <p>
+                        <button class="form-control" id="add_ill_btn">
+                          Add Diagnosis
+                        </button>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="patient-ill">No patient selected.</div>
+              <script id="ill-template" type="text/x-handlebars-template">
+                {{#each data}}
+                <div class="log">
+                  <h4>{{this.title}} - {{this.date}}</h4>
+                  <h5>Added by <a href="tel:{{this.doctor_phone}}">{{this.doctor_name}}</a></h5>
+                  <p>{{this.content}}</p>
+                  <p>Details:</p>
+                  <ul>
+                    {{#each this.data}}
+                      <li>{{@key}}: {{this}}</li>
+                    {{/each}}
+                  </ul>
+                </div>
+                {{/each}}
+              </script>
             </div>
             <div class="tab-pane fade" id="medication">
               <div
-                class="panel-group"
-                id="accordion"
+                class="panel-group accordion"
+                id="med-accordion"
                 role="tablist"
                 aria-multiselectable="true"
               >
@@ -246,7 +403,7 @@
                       <a
                         role="button"
                         data-toggle="collapse"
-                        data-parent="#accordion"
+                        data-parent="#med-accordion"
                         href="#add_meds"
                         aria-expanded="true"
                         aria-controls="add_meds"
@@ -282,6 +439,24 @@
                           rows="10"
                           class="form-control"
                         ></textarea>
+                      </p>
+                      <p>
+                        <label for="start-date">Start Date</label>
+                        <input
+                          type="date"
+                          class="form-control"
+                          name="start-date"
+                          id="start-date"
+                        />
+                      </p>
+                      <p>
+                        <label for="end-date">End Date</label>
+                        <input
+                          type="date"
+                          class="form-control"
+                          name="end-date"
+                          id="end-date"
+                        />
                       </p>
                       <p>
                         <label for="med-time-1">Time Taken #1</label>
@@ -324,6 +499,7 @@
                 {{#each data}}
                 <div class="med">
                   <h4>{{this.name}}</h4>
+                  <h5>Dates Taken: {{this.start_time}} - {{this.end_time}}</h5>
                   <b>Times</b>
                   <ul>
                   {{#each this.times}}

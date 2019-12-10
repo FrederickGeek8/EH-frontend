@@ -1,11 +1,10 @@
 const server = "http://localhost:5000";
 
 export class Postman {
-  static async login(phone, password, role) {
+  static async login(phone, password) {
     const body = {
       phone: phone,
-      password: password,
-      role: role
+      password: password
     };
 
     return await Postman._post(body, '/login');
@@ -72,13 +71,14 @@ export class Postman {
     return await Postman._post(body, "/get/log");
   }
 
-  static async add_medicine(phone, name, med_name, desc, times) {
+  static async add_medicine(phone, med_name, desc, times, start, end) {
     const body = {
       patient_phone: phone,
-      patient_name: name,
       name: med_name,
       description: desc,
-      times: times
+      times: times,
+      start_time: start,
+      end_time: end
     };
 
     return await Postman._post(body, "/add/medicine");
@@ -92,10 +92,38 @@ export class Postman {
     return await Postman._post(body, "/get/medicine");
   }
 
+  static async add_illness(phone, title, content, date, diseases) {
+    const body = {
+      phone: phone,
+      title: title,
+      content: content,
+      date: date,
+      diseases: diseases
+    };
+
+    return await Postman._post(body, "/add/diagnosis");
+  }
+
+  static async get_illness(phone_number) {
+    const body = {
+      phone: phone_number
+    };
+
+    return await Postman._post(body, "/get/diagnosis");
+  }
+
   static async logout() {
     const body = {};
 
     return await Postman._get(body, '/logout');
+  }
+
+  static async search(name) {
+    const body = {
+      name: name
+    };
+    
+    return await Postman._post(body, '/search/patient');
   }
 
   static async _post(body, path) {

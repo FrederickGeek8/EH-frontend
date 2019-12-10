@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Alex Beck</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link rel="stylesheet" href="../less/main.less" />
+    <link rel="stylesheet" href="../less/small-form.less" />
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-inverse">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">
+          <img alt="Brand" src="../img/fulllogo.png" height="50" />
+        </a>
+      </div>
+      <div class="navbar-header pull-right">
+        <a href="#" class="navbar-text" id="logoutButton">Logout</a>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="small-form">
+        <div class="well well-lg">
+          <p>
+            <label for="name">Name: </label>
+            <input type="text" name="name" id="name" class="form-control" />
+          </p>
+          <p><button class="form-control" id="search">Search</button></p>
+          <div id="results"></div>
+          <script id="results-template" type="text/x-handlebars-template">
+            {{#each data}}
+            <hr>
+            <h3>{{this.name}}</h3>
+            <h4>Phone: {{this.phone}}</h4>
+            {{/each}}
+          </script>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
+    <script src="../js/jpatch.js"></script>
+    <script src="../node_modules/popper.js/dist/umd/popper.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="../js/search.js"></script>
+  </body>
+</html>

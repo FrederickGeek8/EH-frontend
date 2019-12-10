@@ -35,12 +35,13 @@ Postman.get_personal_data(Cookies.get("phone"))
   });
 
 document.getElementById("add_med").onclick = () => {
-  const name = document.getElementById("patient-name").innerText;
   const med_name = document.getElementById("med-name").value;
   const desc = document.getElementById("med-desc").value;
   const time_1 = document.getElementById("med-time-1").value;
   const time_2 = document.getElementById("med-time-2").value;
   const time_3 = document.getElementById("med-time-3").value;
+  const start = document.getElementById("start-date").value;
+  const end = document.getElementById("end-date").value;
   let times = {};
 
   if (time_1 != "") {
@@ -55,15 +56,57 @@ document.getElementById("add_med").onclick = () => {
     times[2] = time_3;
   }
 
-  Postman.add_medicine(current_phone, name, med_name, desc, times)
+  Postman.add_medicine(current_phone, med_name, desc, times, start, end)
     .then(res => ErrorHandler.handle(res))
     .then(_ => Postman.get_medicine(current_phone))
+    .then(res => ErrorHandler.handle(res))
     .then(res => {
       let source = document.getElementById("med-template").innerHTML;
       let template = Handlebars.compile(source);
       let context = res;
       let html = template(context);
       document.getElementById("patient-meds").innerHTML = html;
+
+      $('input').val('');
+      $('textarea').val('');
+    })
+    .catch(err => alert(err));
+};
+
+document.getElementById("add_ill_btn").onclick = _ => {
+  const title = document.getElementById("ill-title").value;
+  const content = document.getElementById("ill-desc").value;
+  const date = document.getElementById("ill-date").value;
+  const dis1 = document.getElementById("ill-dis1").value;
+  const dis1_data = document.getElementById("ill-dis1_data").value;
+  const dis2 = document.getElementById("ill-dis2").value;
+  const dis2_data = document.getElementById("ill-dis2_data").value;
+  const dis3 = document.getElementById("ill-dis3").value;
+  const dis3_data = document.getElementById("ill-dis3_data").value;
+  
+  let diseases = {
+    [dis1]: dis1_data,
+    [dis2]: dis2_data,
+    [dis3]: dis3_data
+  };
+
+  if ("" in diseases) {
+    delete diseases[""];
+  }
+
+  Postman.add_illness(current_phone, title, content, date, diseases)
+    .then(res => ErrorHandler.handle(res))
+    .then(_ => Postman.get_illness(current_phone))
+    .then(res => ErrorHandler.handle(res))
+    .then(res => {
+      let source = document.getElementById("ill-template").innerHTML;
+      let template = Handlebars.compile(source);
+      let context = res;
+      let html = template(context);
+      document.getElementById("patient-ill").innerHTML = html;
+
+      $('input').val('');
+      $('textarea').val('');
     })
     .catch(err => alert(err));
 };
@@ -115,7 +158,6 @@ document.getElementById("retrieve_data").onclick = () => {
   Postman.get_medicine(current_phone)
     .then(res => ErrorHandler.handle(res))
     .then(res => {
-      console.log(res);
       let source = document.getElementById("med-template").innerHTML;
       let template = Handlebars.compile(source);
       let context = res;
@@ -124,5 +166,16 @@ document.getElementById("retrieve_data").onclick = () => {
     })
     .catch(err => alert(err));
 
-  $("#accordion").show();
+  Postman.get_illness(current_phone)
+    .then(res => ErrorHandler.handle(res))
+    .then(res => {
+      let source = document.getElementById("ill-template").innerHTML;
+      let template = Handlebars.compile(source);
+      let context = res;
+      let html = template(context);
+      document.getElementById("patient-ill").innerHTML = html;
+    })
+    .catch(err => alert(err));
+
+  $(".accordion").show();
 };
