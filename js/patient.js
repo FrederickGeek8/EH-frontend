@@ -25,6 +25,11 @@ Postman.get_personal_data(Cookies.get("phone"))
     document.getElementById("new_gender").value = res["data"]["gender"];
     document.getElementById("new_age").value = res["data"]["age"];
     document.getElementById("new_addr").value = res["data"]["address"];
+
+    if (res["data"]["image"] != "") {
+      document.getElementById("avatar").src = res["data"]["image"];
+      document.getElementById("new_avatar").value = res["data"]["image"];
+    }
   })
   .then(_ => {
     $(".container").fadeIn("slow");
@@ -48,16 +53,27 @@ Postman.get_logs(Cookies.get("phone"))
 
 // Get medicine
 Postman.get_medicine(Cookies.get("phone"))
-    .then(res => ErrorHandler.handle(res))
-    .then(res => {
-      console.log(res);
-      let source = document.getElementById("med-template").innerHTML;
-      let template = Handlebars.compile(source);
-      let context = res;
-      let html = template(context);
-      document.getElementById("personal-meds").innerHTML = html;
-    })
-    .catch(err => alert(err));
+  .then(res => ErrorHandler.handle(res))
+  .then(res => {
+    console.log(res);
+    let source = document.getElementById("med-template").innerHTML;
+    let template = Handlebars.compile(source);
+    let context = res;
+    let html = template(context);
+    document.getElementById("personal-meds").innerHTML = html;
+  })
+  .catch(err => alert(err));
+
+Postman.get_illness(Cookies.get("phone"))
+  .then(res => ErrorHandler.handle(res))
+  .then(res => {
+    let source = document.getElementById("ill-template").innerHTML;
+    let template = Handlebars.compile(source);
+    let context = res;
+    let html = template(context);
+    document.getElementById("personal-ill").innerHTML = html;
+  })
+  .catch(err => alert(err));
 
 document.getElementById("save_data").onclick = _ => {
   const name = document.getElementById("new_name").value;
@@ -65,7 +81,8 @@ document.getElementById("save_data").onclick = _ => {
   const gender = document.getElementById("new_gender").value;
   const age = document.getElementById("new_age").value;
   const address = document.getElementById("new_addr").value;
-  Postman.add_personal_data(name, email, gender, age, address)
+  const image = document.getElementById("new_avatar").value;
+  Postman.add_personal_data(name, email, gender, age, address, image)
     .then(res => ErrorHandler.handle(res))
     .then(() => {
       window.location.reload(false);

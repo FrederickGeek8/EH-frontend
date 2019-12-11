@@ -29,13 +29,14 @@ export class Postman {
     return await Postman._post(body, '/get/data');
   }
 
-  static async add_personal_data(name, email, gender, age, address) {
+  static async add_personal_data(name, email, gender, age, address, image) {
     const body = {
       name: name,
       email: email,
       gender: gender,
       age: age,
-      address: address
+      address: address,
+      image: image
     };
 
     return await Postman._post(body, "/add/data");
@@ -124,6 +125,15 @@ export class Postman {
     };
     
     return await Postman._post(body, '/search/patient');
+  }
+
+  static async message(phone_number, message) {
+    const body = {
+      phone: phone_number,
+      message: message
+    };
+
+    return await Postman._post(body, '/add/reminder');
   }
 
   static async _post(body, path) {

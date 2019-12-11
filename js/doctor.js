@@ -26,6 +26,11 @@ Postman.get_personal_data(Cookies.get("phone"))
     document.getElementById("new_gender").value = res["data"]["gender"];
     document.getElementById("new_age").value = res["data"]["age"];
     document.getElementById("new_addr").value = res["data"]["address"];
+
+    if (res["data"]["image"] != "") {
+      document.getElementById("avatar").src = res["data"]["image"];
+      document.getElementById("new_avatar").value = res["data"]["image"];
+    }
   })
   .then(_ => {
     $(".container").fadeIn("slow");
@@ -67,8 +72,8 @@ document.getElementById("add_med").onclick = () => {
       let html = template(context);
       document.getElementById("patient-meds").innerHTML = html;
 
-      $('input').val('');
-      $('textarea').val('');
+      $("input").val("");
+      $("textarea").val("");
     })
     .catch(err => alert(err));
 };
@@ -83,7 +88,7 @@ document.getElementById("add_ill_btn").onclick = _ => {
   const dis2_data = document.getElementById("ill-dis2_data").value;
   const dis3 = document.getElementById("ill-dis3").value;
   const dis3_data = document.getElementById("ill-dis3_data").value;
-  
+
   let diseases = {
     [dis1]: dis1_data,
     [dis2]: dis2_data,
@@ -105,8 +110,8 @@ document.getElementById("add_ill_btn").onclick = _ => {
       let html = template(context);
       document.getElementById("patient-ill").innerHTML = html;
 
-      $('input').val('');
-      $('textarea').val('');
+      $("input").val("");
+      $("textarea").val("");
     })
     .catch(err => alert(err));
 };
@@ -117,7 +122,8 @@ document.getElementById("save_data").onclick = _ => {
   const gender = document.getElementById("new_gender").value;
   const age = document.getElementById("new_age").value;
   const address = document.getElementById("new_addr").value;
-  Postman.add_personal_data(name, email, gender, age, address)
+  const image = document.getElementById("new_avatar").value;
+  Postman.add_personal_data(name, email, gender, age, address, image)
     .then(res => ErrorHandler.handle(res))
     .then(() => {
       window.location.reload(false);
@@ -178,4 +184,12 @@ document.getElementById("retrieve_data").onclick = () => {
     .catch(err => alert(err));
 
   $(".accordion").show();
+};
+
+document.getElementById("send_btn").onclick = () => {
+  const message = document.getElementById("message").value;
+  Postman.message(current_phone, message)
+    .then(res => ErrorHandler.handle(res))
+    .then(() => alert("Success!"))
+    .catch(err => alert(err));
 };

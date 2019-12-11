@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Alex Beck</title>
+    <title>UniHealth</title>
     <meta charset="utf-8" />
     <meta
       name="viewport"
@@ -43,6 +43,15 @@
                 class="form-control"
                 name="new_email"
                 id="new_email"
+              />
+            </p>
+            <p>
+              <label for="new_avatar">Avatar: </label>
+              <input
+                type="url"
+                name="new_avatar"
+                id="new_avatar"
+                class="form-control"
               />
             </p>
             <p>
@@ -284,7 +293,14 @@
     <div class="container">
       <div class="row">
         <div class="col-md-4 text-center">
-          <img src="../img/user.png" alt="User Icon" class="img-circle" />
+          <img
+            src="../img/user.png"
+            alt="User Icon"
+            class="img-circle"
+            id="avatar"
+            width="250"
+            height="250"
+          />
           <h1 id="name">Alex Beck</h1>
           <h5 class="text-muted">Patient</h5>
           <br />
@@ -367,7 +383,22 @@
               </script>
             </div>
             <div class="tab-pane fade" id="illness">
-              Illnesses
+              <div id="personal-ill">No patient selected.</div>
+              <script id="ill-template" type="text/x-handlebars-template">
+                {{#each data}}
+                <div class="log">
+                  <h4>{{this.title}} - {{this.date}}</h4>
+                  <h5>Added by <a href="tel:{{this.doctor_phone}}">{{this.doctor_name}}</a></h5>
+                  <p>{{this.content}}</p>
+                  <p>Details:</p>
+                  <ul>
+                    {{#each this.data}}
+                      <li>{{@key}}: {{this}}</li>
+                    {{/each}}
+                  </ul>
+                </div>
+                {{/each}}
+              </script>
             </div>
             <div class="tab-pane fade" id="medication">
               <div id="personal-meds">No patient selected.</div>
