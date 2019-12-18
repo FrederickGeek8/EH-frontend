@@ -1,9 +1,13 @@
-# EH-frontend
+# UH-frontend
 Frontend for Uni Health
 
 ## Prerequisites
-You can install `parcel` by running `npm install --save parcel`. You can install 
-the local dependencies by running `npm install`.
+You can install dependencies for building, running, etc., with `npm install` at
+the root of the directory. This requires you to have Node.js.
 
-## Building
-Run `npm run start` to start the server
+## Running
+A development server can be run using `npm start`. 
+
+## Static Build
+A static build can be made with `npm run build`. Output files will be stored in
+`dist/`.

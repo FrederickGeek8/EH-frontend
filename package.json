@@ -1,5 +1,5 @@
 {
-  "name": "eh-frontend",
+  "name": "uh-frontend",
   "version": "1.0.0",
   "description": "Frontend for Uni Health",
   "main": "index.js",
@@ -10,23 +10,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Uni-Health/EH-frontend.git"
+    "url": "git+https://github.com/FrederickGeek8/UH-frontend.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Uni-Health/EH-frontend/issues"
+    "url": "https://github.com/FrederickGeek8/UH-frontend/issues"
   },
-  "homepage": "https://github.com/Uni-Health/EH-frontend#readme",
+  "homepage": "https://github.com/FrederickGeek8/UH-frontend#readme",
   "dependencies": {
     "@babel/polyfill": "^7.6.0",
     "bootstrap": "^3.4.1",
     "handlebars": "^4.5.3",
     "jquery": "^3.4.1",
     "parcel": "^1.12.4",
-    "popper.js": "^1.16.0"
-  },
-  "devDependencies": {
+    "popper.js": "^1.16.0",
     "@babel/cli": "^7.6.4",
     "@babel/core": "^7.6.4",
     "@babel/preset-env": "^7.6.3",
