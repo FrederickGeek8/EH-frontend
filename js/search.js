@@ -4,6 +4,7 @@ import { ErrorHandler } from "./error_handler";
 import Handlebars from "handlebars";
 import "./logout";
 
+// Check if user if logged in.
 if (Cookies.get("phone") != undefined && Cookies.get("role") != undefined) {
   if (Cookies.get("role") == "patient") {
     window.location.replace("/info.html");

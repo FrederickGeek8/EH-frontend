@@ -2,6 +2,7 @@ import { Postman } from "./postman";
 import { Cookies } from "./cookies";
 import { ErrorHandler } from "./error_handler";
 
+// Check if user is logged in.
 if (Cookies.get("phone") != undefined && Cookies.get("role") != undefined) {
   if (Cookies.get("role") == "doctor") {
     window.location.replace("/info_doctor.html");
